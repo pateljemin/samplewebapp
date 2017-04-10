@@ -1,0 +1,50 @@
+group 'com.jemin'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'maven'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.akhikhl.gretty:gretty:+')
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url "http://localhost:8081/nexus/content/repositories/localmaven/"
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://localhost:8081/nexus/content/repositories/localmaven/") {
+                authentication(userName: "admin", password: "admin123")
+            }
+            pom.artifactId = "localmaven"
+            pom.groupId = "localmaven"
+        }
+    }
+}
+
+dependencies {
+    compile(
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.boot:spring-boot-starter-thymeleaf'
+    )
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+gretty {
+    httpPort = 8081
+    contextPath = '/'
+    servletContainer = 'tomcat8'
+}
