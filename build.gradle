@@ -8,6 +8,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    maven { url "https://repo.spring.io/libs-release" }
     mavenLocal()
     mavenCentral()
 }
@@ -24,6 +25,7 @@ buildscript {
 dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'org.springframework:spring-webmvc:4.3.7.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.4.1.RELEASE'
     compile 'javax.servlet:jstl:1.2'
     testCompile 'junit:junit:4.11'
     def tomcatVersion = '7.0.76'
@@ -31,6 +33,7 @@ dependencies {
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
             "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
     compile 'org.quartz-scheduler:quartz:2.2.1'
+    compile group: 'redis.clients', name: 'jedis', version: '2.4.1'
 }
 
 // Embeded Jetty for testing
