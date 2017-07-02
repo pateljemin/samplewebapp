@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Jemin on 4/10/17.
  */
-@Controller
+@RestController
 public class CommonController {
     private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
     private final HelloWorldService helloWorldService;
